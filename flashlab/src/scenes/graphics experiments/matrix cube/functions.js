@@ -47,32 +47,7 @@ export function multiplyMatrices(m1, m2) {
     }
 }
 
-export function rotateX(vector, t) {
-    const rx = [
-        [1, 0, 0],
-        [0, Math.cos(t), -Math.sin(t)],
-        [0, Math.sin(t), Math.cos(t)]
-    ];
-    return multiplyMatrices(rx, vector);
-}
 
-export function rotateY(vector, t) {
-    const ry = [
-        [Math.cos(t), 0, Math.sin(t)],
-        [0, 1, 0],
-        [-Math.sin(t), 0, Math.cos(t)]
-    ];
-    return multiplyMatrices(ry, vector);
-}
-
-export function rotateZ(vector, t) {
-    const rz = [
-        [Math.cos(t), -Math.sin(t), 0],
-        [Math.sin(t), Math.cos(t), 0],
-        [0, 0, 1]
-    ];
-    return multiplyMatrices(rz, vector);
-}
 
 export function degrees(degrees) {
     return Math.PI / (180 / degrees);
