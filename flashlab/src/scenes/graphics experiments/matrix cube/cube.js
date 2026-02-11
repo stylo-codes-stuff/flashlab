@@ -12,6 +12,6 @@ export class template extends Scene
     create ()
     {
         const {centerX,centerY} = this.cameras.main
-        this.add.text(centerX,centerY,'this is a template for future scenes')
+        this.graphics = this.add.graphics();
     }
 }
