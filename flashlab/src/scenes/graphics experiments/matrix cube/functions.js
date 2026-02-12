@@ -20,19 +20,21 @@ export function dotProduct(v1, v2) {
 export function multiplyMatrices(m1, m2) {
     const result = [];
     const columnMatrix = [];
+    //check to see if both matrices are valid for multiplication
     if (m1[0].length !== m2.length) {
         throw new Error(
             "The amount of columns in the first matrix, does not equal the amount of rows in the second matrix."
         );
     }
     // check if m2 is a column vector (1D array)
+    //this is easier and faster than how we multiply two different dimensional vectors
     if (!Array.isArray(m2[0])) {
         for (const row of m1) {
             result.push(dotProduct(row, m2));
         }
         return result;
     }
-    // if not
+    // if not multiply it cell by cell 
     else {
         const resultMatrix = createEmptyMatrix(m1.length, m2[0].length);
         for (let rowIndex = 0; rowIndex < m2[0].length; rowIndex++) {
