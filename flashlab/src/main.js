@@ -4,6 +4,7 @@ import { MainMenu } from "./MainMenu";
 import { Preloader } from "./Preloader";
 import { matrixCube } from "./scenes/graphics experiments/matrix cube/cube";
 import { sliders } from "./scenes/graphics experiments/sliders/sliders";
+import { radio } from "./scenes/toys/radio/radio";
 
 
 //  Find out more information about the Game Config at: https://newdocs.phaser.io/docs/3.70.0/Phaser.Types.Core.GameConfig
@@ -24,11 +25,12 @@ const config = {
         }
     },
     scene: [
-
+        Boot,
         Preloader,
         MainMenu,
         matrixCube,
-        sliders
+        sliders,
+        radio
         
     ]
 };
