@@ -12,18 +12,25 @@ export class radio extends Scene
     }
     create ()
     {
-
-        const context = new AudioContext();
-        const element = document.getElementById('radio')
-        const track = context.createMediaElementSource(element)
-        track.connect(context.destination)
-        context.audioWorklet.addModule('./resample.js').then(()=>{
-            let resampler = new AudioWorkletNode(context,'resampler',{processorOptions:{reductionFactor:-1000},})
-            resampler.connect(context.destination)
-            element.play()
+        
+        const context = this.sound.context
+        const element = document.getElementById('radio');
+        
+        const track = context.createMediaElementSource(element);
+        
+        context.audioWorklet.addModule('resample.js').then(() => {
+            const resampler = new AudioWorkletNode(context, 'resampler', {
+                processorOptions: {
+                    reductionFactor: 121,  // higher = more crunchy
+                    bitDepth: 100          // lower = more distorted
+                }
+            });
             
+            track.connect(resampler);
+            resampler.connect(context.destination);
             
-        })
+        });
+        element.play()
         
     }
     update(t,dt){

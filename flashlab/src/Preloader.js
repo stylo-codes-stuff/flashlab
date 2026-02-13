@@ -37,7 +37,7 @@ export class Preloader extends Scene
         {
 
             this.scene.transition({
-                target: 'matrixCube',
+                target: 'radio',
                 duration: 1000,
                 moveBelow: true,
                 onUpdate: (progress) => {
