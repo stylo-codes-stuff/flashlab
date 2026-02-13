@@ -1,0 +1,17 @@
+//copy and paste this everytime you need to start a new scene
+
+import { Scene } from 'phaser';
+
+export class radio extends Scene
+{
+    constructor ()
+    {
+        super('radio');
+    }
+    
+    create ()
+    {
+        const {centerX,centerY} = this.cameras.main
+        this.add.text(centerX,centerY,'this is a template for future scenes')
+    }
+}
