@@ -38,7 +38,7 @@ export class matrixCube extends Scene
         this.point8 = new point(this,centerX-100,centerY+100,-100,'point').setOrigin(.5,.5).setDisplaySize(10,10)
         //x angle slider code
         this.sliderxGraphics = this.add.graphics();
-        this.sliderxGraphics.fillStyle('#AAAAAA')
+        this.sliderxGraphics.fillStyle('#000000')
         this.sliderxKnob = this.add.sprite(100,centerY+216,'point').setInteractive({draggable:true})
         this.sliderxGraphics.fillRoundedRect(100-16, centerY+200,400,32,15)
         this.sliderxText = this.add.text(100+64,centerY+170,'X-axis rotation angle: 0')
@@ -79,7 +79,7 @@ export class matrixCube extends Scene
             if (this.sliderxKnob.x >470){
                 this.sliderxKnob.x = 469
             }
-            this.xangle = Math.round((this.sliderxKnob.x-100)/370*30)
+            this.xangle = Math.round(((this.sliderxKnob.x-100))/370*30)
             this.sliderxText.text = `X-axis rotation angle: ${this.xangle}`
         })
         this.slideryKnob.on('drag',(event,dragx,dragy)=>{

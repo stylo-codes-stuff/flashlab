@@ -29,15 +29,14 @@ export class Preloader extends Scene
     preload ()
     {
         //  Load the assets for the game - Replace with the path to your own assets
-        this.load.setPath('assets');
-        this.load.audio('radiosound','toy assets/radio/radio.m4a')
+
     }   
         
         create ()
         {
 
             this.scene.transition({
-                target: 'radio',
+                target: 'particles',
                 duration: 1000,
                 moveBelow: true,
                 onUpdate: (progress) => {

@@ -4,8 +4,8 @@ class Resampler extends AudioWorkletProcessor {
 
     const opts = options.processorOptions || {};
 
-    this.reductionFactor = opts.reductionFactor || 8; // sample hold
-    this.bitDepth = opts.bitDepth || 8;               // bit crushing
+    this.reductionFactor = opts.reductionFactor || 8; 
+    this.bitDepth = opts.bitDepth || 8;              
 
     this.phase = 0;
     this.lastSample = 0;
