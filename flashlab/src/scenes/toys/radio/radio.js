@@ -16,17 +16,17 @@ export class radio extends Scene
         const {centerX,centerY} = this.cameras.main
         const context = this.sound.context
         const element = document.getElementById('radio');
-        
+        const resampler = []
         const track = context.createMediaElementSource(element);
         const gainNode = context.createGain();
-        gainNode.gain.value = .1;
+        gainNode.gain.value = .01;
         track.connect(gainNode).connect(context.destination);
         
         context.audioWorklet.addModule('assets/audio/radio/audioProcessors/resample.js').then(() => {
-            const resampler = new AudioWorkletNode(context, 'resampler', {
+            tresampler = new AudioWorkletNode(context, 'resampler', {
                 processorOptions: {
-                    reductionFactor: 10000,  // higher = more crunchy
-                    bitDepth:1     // lower = more distorted
+                    reductionFactor: 10,  // higher = more crunchy
+                    bitDepth:100     // lower = more distorted
                 }
             });
             track
@@ -35,8 +35,10 @@ export class radio extends Scene
             .connect(context.destination);
             
         });
+
         element.play()
         var radio = this.add.sprite(centerX,centerY,'radio').setDisplaySize(75,65)
+        console(this.resampler.parameters)
         this.bitDepthGraphics  = this.add.graphics();
         this.bitDepthGraphics.fillStyle(0x000000)
         this.bitDepthslider = this.bitDepthGraphics.fillRoundedRect(100,centerY+300-16,400,32,15)
