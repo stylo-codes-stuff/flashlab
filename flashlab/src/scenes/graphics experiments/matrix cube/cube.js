@@ -44,7 +44,7 @@ export class matrixCube extends Scene
         this.sliderxText = this.add.text(100+64,centerY+170,'X-axis rotation angle: 0')
         //y angle slider code
         this.slideryGraphics = this.add.graphics()
-        this.slideryGraphics.fillStyle(0xaaaaaa)
+        this.slideryGraphics.fillStyle()
         this.slideryKnob = this.add.sprite(100,centerY+316,'point').setInteractive({draggable:true})
         this.slideryGraphics.fillRoundedRect(100-16,centerY+300,400,32,15)
         this.slideryText = this.add.text(100+64,centerY+270,'Y-axis rotation angle: 0 ')
