@@ -5,10 +5,10 @@ export class orbit extends Phaser.Scene {
         super('orbit');
     }
     preload(){
-        this.load.image('sun','sun.png')
-        this.load.image('mercury','mercury.png')
+        this.load.image('sun','assets/physics assets/solar system/sun.png')
+        this.load.image('mercury','assets/physics assets/solar system/mercury.png')
     }
-
+    
     create() {
         //setup for physics bodies
         const {centerX,centerY} = this.cameras.main;
@@ -18,18 +18,19 @@ export class orbit extends Phaser.Scene {
         this.graphics.lineStyle(10, 0x000000)
         this.pathpoints = [];
         this.physicsObjects = [];
-        this.G = 3000
+        this.G = 2000
         this.reset = this.add.text(50,50,'reset planets').setInteractive();
-        this.sun = new body(this,centerX,centerY,'sun',0,0,400)
+        this.re
+        this.sun = new body(this,centerX,centerY,'sun',0,0,400).setDisplaySize(100,100)
         this.sun.static = true
         this.mercury = new body(this,centerX,centerY+100,'mercury',75,0,100)
-        this.b2 = new body(this,centerX,centerY)
+        this.b2 = new body(this,centerX,centerY-100,'mercury',-75,0,100).setDisplaySize(100,100)
         //static test bodies
         this.velocity = this.add.text(50,100,'')
         this.angletext = this.add.text(50,150,'')
-
+        
         this.mercury.setSize(110,110)
-        this.physicsObjects.push(this.sun,this.mercury)
+        this.physicsObjects.push(this.sun,this.mercury,this.b2)
         this.elapsed = 0 ;
         this.reset.on('pointerup',()=>{
             this.mercury.x = centerX;
@@ -39,18 +40,18 @@ export class orbit extends Phaser.Scene {
         })
         //setup for side menus
         
-  //this.cameras.main.startFollow(this.mercury);
+        this.cameras.main.startFollow(this.mercury);
     }
     
     update(t,dt) {
-
+        
         
         const dtSeconds = Math.min(dt / 1000, 0.02);
-
-
+        
+        
         this.physicsObjects.forEach(obj1=>{
             var g_vectors = []
-
+            
             //generate vectors for the g force of all other bodies a
             this.physicsObjects.forEach(obj2=>{
                 //skip if the second obj is the first to avoid error or if its static
@@ -62,7 +63,7 @@ export class orbit extends Phaser.Scene {
                     var fv = new vector(fa,fg)
                     g_vectors.push(fv)
                 }
-
+                
             })   
             //euler integrtaion of acceleration using net force vector and object mass
             var netf = getResultant(g_vectors)
@@ -73,7 +74,7 @@ export class orbit extends Phaser.Scene {
             this.angletext.text = `angle: ${obj1.vel_vec.t}`
             obj1.move(dtSeconds)
         })
-
+        
         this.elapsed += dt
     }
 }

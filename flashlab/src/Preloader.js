@@ -36,7 +36,7 @@ export class Preloader extends Scene
         {
 
             this.scene.transition({
-                target: 'radio',
+                target: 'orbit',
                 duration: 1000,
                 moveBelow: true,
                 onUpdate: (progress) => {

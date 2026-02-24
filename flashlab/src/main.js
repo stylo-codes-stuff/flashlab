@@ -7,8 +7,8 @@ import { sliders } from "./scenes/graphics experiments/sliders/sliders";
 import { radio } from "./scenes/toys/radio/radio";
 import { particles } from "./scenes/graphics experiments/particles/particles";
 import { celltalk } from "./scenes/toys/celltalk/celltalk";
-import { solarSystem } from "./scenes/physics experiments/interactive solar system/solarsystem";
-
+import {orbit} from './scenes/physics experiments/orbital mechanics sim/orbit'
+import { UI2 } from "./scenes/physics experiments/orbital mechanics sim/UI/uitests";
 
 //  Find out more information about the Game Config at: https://newdocs.phaser.io/docs/3.70.0/Phaser.Types.Core.GameConfig
 const config = {
@@ -36,8 +36,8 @@ const config = {
         radio,
         particles,
         celltalk,
-        solarSystem,
-        
+        orbit,
+        UI2
     ]
 };
 

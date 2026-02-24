@@ -1,8 +1,7 @@
-import {checkbox,textbox} from './UI.js';
-import {body} from './classes.js';
+import { checkbox,textbox } from "./uiclasses";
 export class UI2 extends Phaser.Scene {
     constructor() {
-        super({ key: 'ui' });
+        super('ui');
     }
     preload(){
                 this.load.spritesheet('checkbox', 'checkbox32x32.png', { 
