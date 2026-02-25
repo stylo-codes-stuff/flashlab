@@ -36,7 +36,7 @@ export class Preloader extends Scene
         {
 
             this.scene.transition({
-                target: 'orbit',
+                target: 'simplex noise',
                 duration: 1000,
                 moveBelow: true,
                 onUpdate: (progress) => {

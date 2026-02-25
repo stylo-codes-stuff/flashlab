@@ -9,7 +9,7 @@ import { particles } from "./scenes/graphics experiments/particles/particles";
 import { celltalk } from "./scenes/toys/celltalk/celltalk";
 import {orbit} from './scenes/physics experiments/orbital mechanics sim/orbit'
 import { UI2 } from "./scenes/physics experiments/orbital mechanics sim/UI/uitests";
-
+import { SimplexNoise } from "./scenes/algorithms/procedural generation/simplex noise/noise";
 //  Find out more information about the Game Config at: https://newdocs.phaser.io/docs/3.70.0/Phaser.Types.Core.GameConfig
 const config = {
     type: Phaser.AUTO,
@@ -37,7 +37,8 @@ const config = {
         particles,
         celltalk,
         orbit,
-        UI2
+        UI2,
+        SimplexNoise
     ]
 };
 
