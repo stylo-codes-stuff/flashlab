@@ -4,6 +4,8 @@ import {
 import {
 	hashGrad
 } from './functions.js';
+import { generateVectorTable } from "./random.js";
+import { generateNoisemap } from "./functions.js";
 export class point {
 	constructor(x, y, vectorSet) {
 		this.G = (3 - Math.sqrt(3)) / 6;
@@ -23,7 +25,7 @@ export class point {
 		// local coords
 		this.x0 = x - this.X0;
 		this.y0 = y - this.Y0;
-		this.vectorSet = vectorSet;
+		this.vectors= vectorSet;
 		this.noiseVal = this.getNoiseValue()
 	}
 	//get which half of the simplex the point lies in
@@ -48,9 +50,9 @@ export class point {
 		} = this.getSimplexOffsets()
 		var contributions = []
 		//get each corners respective gradients
-		const g0 = hashGrad(this.i, this.j, this.vectorSet)
-		const g1 = hashGrad(this.i + i1, this.j + j1, this.vectorSet)
-		const g2 = hashGrad(this.i + 1, this.j + 1, this.vectorSet)
+		const g0 = hashGrad(this.i, this.j, this.vectors)
+		const g1 = hashGrad(this.i + i1, this.j + j1, this.vectors)
+		const g2 = hashGrad(this.i + 1, this.j + 1, this.vectors)
 		const grads = [g0, g1, g2];
 
 		//use gradient vectors to calculate contribution;
