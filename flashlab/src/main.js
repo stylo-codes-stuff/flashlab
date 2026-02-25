@@ -28,7 +28,6 @@ const config = {
         }
     },
     scene: [
-        Boot,
         Preloader,
         MainMenu,
         matrixCube,

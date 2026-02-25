@@ -13,30 +13,46 @@ export class SimplexNoise extends Scene
     
     create ()
     {
+        this.game.config.pixelArt = false;
         this.noiseGraphics = this.add.graphics();
         var vectors = generateVectorTable(64)
-        var length = 1000
-        var width = 1000
-        const map = generateNoisemap(width,length,.05,vectors)
-        for (var y = 0; y<length;y++){
+        const width = this.scale.width;
+        const height = this.scale.height;
+        
+        const noiseTexture = this.textures.createCanvas('noise', width, height);
+        const context = noiseTexture.getContext();
+        const map = generateNoisemap(width,height,.01,vectors)
+        const imageData = context.createImageData(width, height);
+        const data = imageData.data;
+        
+        for (var y = 0; y<height;y++){
             //chose color and alpha level based on noise value
             for(var x = 0;x<width;x++){
+                //get correct index for 1d image data array
+                const idx = (y * width + x) * 4;
                 const normalized = (map[y][x].noiseVal + 0.7) / 1.4;
                 const color_val = Math.floor(normalized * 255);
                 if (map[y][x].noiseVal > 0){
-                    this.color_val = Phaser.Display.Color.GetColor(color_val,color_val,color_val)
-                    
-                    this.noiseGraphics.fillStyle(this.color_val,1)
-                    this.noiseGraphics.fillRect(x*5,y*5,5,5)
+                    data[idx] = color_val;     
+                    data[idx + 1] = color_val; 
+                    data[idx + 2] = color_val; 
                 }else{
-                    this.color_val = Phaser.Display.Color.GetColor(0,0,color_val)
-                    
-                    this.noiseGraphics.fillStyle(this.color_val,1)
-                    this.noiseGraphics.fillRect(x*5,y*5,5,5)
-                    
-                    
+                    data[idx] = 0;             
+                    data[idx + 1] = 0;         
+                    data[idx + 2] = color_val;
                 }
+                data[idx + 3] = 255; // Fully opaque
+                
             }
         }
+        context.putImageData(imageData, 0, 0);
+        
+        this.noiseCalcs = (width*3/2) + height
+        console.log(this.noiseCalcs)
+        // Add the canvas texture to the scene
+        this.add.image(0, 0, 'noise').setOrigin(0).setDisplaySize(width/3*2, height);
+        noiseTexture.refresh();
+        
     }
+    update(){}
 }
